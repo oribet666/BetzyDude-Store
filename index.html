@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BetzyDude — Playful Digital Shop</title>
+  <title>BetzyDude — Creative Assets</title>
   
   <style>
     :root {
@@ -42,6 +42,7 @@
       text-decoration: none;
       color: var(--text);
       font-weight: 600;
+      font-size: 0.95rem;
     }
 
     .hero {
@@ -54,9 +55,17 @@
       margin-bottom: 1rem;
     }
 
+    .section-header {
+      text-align: center;
+      font-size: 2rem;
+      margin-top: 4rem;
+      margin-bottom: 2rem;
+      color: var(--accent-3);
+    }
+
     .section {
-      padding: 4.5rem 2rem;
-      max-width: 1100px;
+      padding: 2rem 2rem;
+      max-width: 1200px;
       margin: auto;
     }
 
@@ -73,10 +82,13 @@
       box-shadow: var(--shadow);
       transition: transform 0.35s ease;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .card:hover {
-      transform: translateY(-8px) rotate(0.4deg);
+      transform: translateY(-8px);
     }
 
     .card img {
@@ -87,8 +99,19 @@
       margin-bottom: 1.5rem;
     }
 
+    .category-tag {
+      background: var(--accent-2);
+      color: #004d40;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-bottom: 0.5rem;
+    }
+
     .btn {
-      margin-top: 1.2rem;
       padding: 0.9rem 1.8rem;
       background: linear-gradient(135deg, var(--accent), var(--accent-3));
       border-radius: 999px;
@@ -99,9 +122,10 @@
       display: inline-block;
       color: #1b1b1b;
       box-shadow: var(--shadow);
+      width: 100%;
     }
 
-    /* LANGUAGE & RTL STYLES */
+    /* LANGUAGE & RTL */
     html[dir="rtl"] {
       direction: rtl;
       text-align: right;
@@ -139,9 +163,7 @@
       transition: transform 0.45s cubic-bezier(.4,0,.2,1);
       z-index: 20;
     }
-
     #cart.open { transform: translateX(0); }
-
     .close-cart {
       background: none;
       border: none;
@@ -149,15 +171,8 @@
       float: right;
       cursor: pointer;
     }
-
     .cart-item { margin-bottom: 0.8rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; }
-
-    footer {
-      padding: 3rem;
-      text-align: center;
-      opacity: 0.7;
-      font-size: 0.9rem;
-    }
+    footer { padding: 3rem; text-align: center; opacity: 0.7; font-size: 0.9rem; }
   </style>
 </head>
 <body>
@@ -165,45 +180,120 @@
 <header>
   <strong>BetzyDude</strong>
   <nav>
-    <a href="index.html" data-i18n="nav_home">Home</a>
-    <a href="funkizuk.html" data-i18n="nav_funkizuk">Funkizuk</a>
-    <a href="kaakoink.html" data-i18n="nav_kaakoink">Kaakoink</a>
-    <a href="yad.html" data-i18n="nav_yad">Yad Hamelech</a>
+    <a href="#fonts" data-i18n="nav_fonts">Fonts</a>
+    <a href="#graphics" data-i18n="nav_graphics">Graphics</a>
+    <a href="#templates" data-i18n="nav_templates">Templates</a>
+    <a href="#books" data-i18n="nav_books">Books</a>
     <a href="#" onclick="toggleCart()" data-i18n="nav_cart">Cart (<span id="cartCount">0</span>)</a>
     <button class="lang-btn" onclick="toggleLanguage()">EN / HE</button>
   </nav>
 </header>
 
 <section class="hero">
-  <h1 data-i18n="hero_title">Fonts with personality.</h1>
-  <p data-i18n="hero_sub" style="font-size: 1.2rem; margin-bottom: 2rem;">Tools with heart.</p>
-  <a href="#collection" class="btn" data-i18n="btn_browse">Browse Collection</a>
+  <h1 data-i18n="hero_title">Creative Assets for the Bold.</h1>
+  <p data-i18n="hero_sub" style="font-size: 1.2rem; margin-bottom: 2rem;">Fonts, Templates, and Tools with personality.</p>
 </section>
 
-<section class="section" id="collection">
+<!-- SECTION 1: FONTS -->
+<h2 class="section-header" id="fonts" data-i18n="sec_fonts">Fonts</h2>
+<section class="section">
   <div class="grid">
-    <!-- Card 1 -->
     <div class="card">
+      <span class="category-tag">Display Font</span>
       <img src="images/FUNKIZUK Cover-01.png" alt="Funkizuk" />
-      <h3 data-i18n="card1_title">Funkizuk</h3>
-      <p data-i18n="card1_desc">Designed to bounce and grab attention.</p>
-      <a href="funkizuk.html" class="btn" data-i18n="card1_btn">View Font</a>
+      <h3>Funkizuk</h3>
+      <p data-i18n="funk_desc">Designed to bounce and grab attention.</p>
+      <a href="funkizuk.html" class="btn" data-i18n="btn_view">View Product</a>
     </div>
 
-    <!-- Card 2 -->
     <div class="card">
+      <span class="category-tag">Sans-Serif</span>
       <img src="images/Ka'akooink Square Cover.png" alt="Kaakoink" />
-      <h3 data-i18n="card2_title">Kaakoink</h3>
-      <p data-i18n="card2_desc">A playful sans-serif with soft curves.</p>
-      <a href="kaakoink.html" class="btn" data-i18n="card2_btn">View Font</a>
+      <h3>Kaakoink</h3>
+      <p data-i18n="kaa_desc">A playful sans-serif with soft curves.</p>
+      <a href="kaakoink.html" class="btn" data-i18n="btn_view">View Product</a>
     </div>
 
-    <!-- Card 3 -->
     <div class="card">
+      <span class="category-tag">Serif</span>
       <img src="images/Yad Hamelech - Cover-01.png" alt="Yad Hamelech" />
-      <h3 data-i18n="card3_title">Yad Hamelech</h3>
-      <p data-i18n="card3_desc">An expressive serif inspired by tradition.</p>
-      <a href="yad.html" class="btn" data-i18n="card3_btn">View Font</a>
+      <h3>Yad Hamelech</h3>
+      <p data-i18n="yad_desc">An expressive serif inspired by tradition.</p>
+      <a href="yad.html" class="btn" data-i18n="btn_view">View Product</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: GRAPHICS -->
+<h2 class="section-header" id="graphics" data-i18n="sec_graphics">Graphic Assets</h2>
+<section class="section">
+  <div class="grid">
+    <div class="card">
+      <span class="category-tag">Assets</span>
+      <!-- Placeholder image instruction -->
+      <div style="width:100%; height:200px; background:#eee; border-radius:18px; margin-bottom:1.5rem; display:flex; align-items:center; justify-content:center;">Image Here</div>
+      <h3>Bitmap Bundle</h3>
+      <p>High-res bitmaps for rough texture.</p>
+      <a href="bitmap.html" class="btn" data-i18n="btn_view">View Product</a>
+    </div>
+    <div class="card">
+      <span class="category-tag">Assets</span>
+      <div style="width:100%; height:200px; background:#eee; border-radius:18px; margin-bottom:1.5rem; display:flex; align-items:center; justify-content:center;">Image Here</div>
+      <h3>Psychadelic Pack</h3>
+      <p>Trippy shapes and colors for the modern mind.</p>
+      <a href="psychadelic.html" class="btn" data-i18n="btn_view">View Product</a>
+    </div>
+    <div class="card">
+      <span class="category-tag">Assets</span>
+      <div style="width:100%; height:200px; background:#eee; border-radius:18px; margin-bottom:1.5rem; display:flex; align-items:center; justify-content:center;">Image Here</div>
+      <h3>Wireframe Kit</h3>
+      <p>Clean lines for technical layouts.</p>
+      <a href="wireframe.html" class="btn" data-i18n="btn_view">View Product</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: TEMPLATES -->
+<h2 class="section-header" id="templates" data-i18n="sec_templates">Canva Templates</h2>
+<section class="section">
+  <div class="grid">
+    <div class="card">
+      <span class="category-tag">Canva</span>
+      <div style="width:100%; height:200px; background:#eee; border-radius:18px; margin-bottom:1.5rem; display:flex; align-items:center; justify-content:center;">Image Here</div>
+      <h3>Social Starter</h3>
+      <p>The essential pack for starting out.</p>
+      <a href="social-starter.html" class="btn" data-i18n="btn_view">View Product</a>
+    </div>
+    <div class="card">
+      <span class="category-tag">Canva</span>
+      <div style="width:100%; height:200px; background:#eee; border-radius:18px; margin-bottom:1.5rem; display:flex; align-items:center; justify-content:center;">Image Here</div>
+      <h3>Social Genius</h3>
+      <p>Advanced layouts for influencers.</p>
+      <a href="social-genius.html" class="btn" data-i18n="btn_view">View Product</a>
+    </div>
+    <div class="card">
+      <span class="category-tag">Canva</span>
+      <div style="width:100%; height:200px; background:#eee; border-radius:18px; margin-bottom:1.5rem; display:flex; align-items:center; justify-content:center;">Image Here</div>
+      <h3>Event Master</h3>
+      <p>Invites and flyers for every party.</p>
+      <a href="event-master.html" class="btn" data-i18n="btn_view">View Product</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: BOOKS -->
+<h2 class="section-header" id="books" data-i18n="sec_books">Digital Books</h2>
+<section class="section">
+  <div class="grid">
+    <div class="card" style="grid-column: 1 / -1; max-width: 600px; margin: 0 auto; text-align: left;">
+      <div style="display:flex; gap: 2rem; align-items: center; flex-wrap: wrap;">
+        <img src="images/book-placeholder.png" alt="Book" style="width:200px; margin-bottom:0;" />
+        <div>
+          <h3>The Digital Guide</h3>
+          <p>Everything you need to know about modern design.</p>
+          <a href="digital-guide.html" class="btn" style="width: auto;">Read More</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -222,100 +312,54 @@
 </footer>
 
 <script>
-  // --- 1. TRANSLATIONS ---
   const translations = {
     en: {
-      nav_home: "Home",
-      nav_funkizuk: "Funkizuk",
-      nav_kaakoink: "Kaakoink",
-      nav_yad: "Yad Hamelech",
-      nav_cart: "Cart",
-      hero_title: "Fonts with personality.",
-      hero_sub: "Tools with heart.",
-      btn_browse: "Browse Collection",
-      card1_title: "Funkizuk",
-      card1_desc: "Designed to bounce and grab attention.",
-      card1_btn: "View Font",
-      card2_title: "Kaakoink",
-      card2_desc: "A playful sans-serif with soft curves.",
-      card2_btn: "View Font",
-      card3_title: "Yad Hamelech",
-      card3_desc: "An expressive serif inspired by tradition.",
-      card3_btn: "View Font",
-      cart_title: "Your Cart",
-      cart_total: "Total:",
-      cart_checkout: "Checkout",
-      footer: "© 2026 BetzyDude — indie tools made with joy"
+      nav_fonts: "Fonts", nav_graphics: "Graphics", nav_templates: "Templates", nav_books: "Books", nav_cart: "Cart",
+      hero_title: "Creative Assets for the Bold.", hero_sub: "Fonts, Templates, and Tools with personality.",
+      sec_fonts: "Fonts", sec_graphics: "Graphic Assets", sec_templates: "Canva Templates", sec_books: "Digital Books",
+      btn_view: "View Product",
+      funk_desc: "Designed to bounce and grab attention.", kaa_desc: "A playful sans-serif with soft curves.", yad_desc: "An expressive serif inspired by tradition.",
+      cart_title: "Your Cart", cart_total: "Total:", cart_checkout: "Checkout", footer: "© 2026 BetzyDude — indie tools made with joy"
     },
     he: {
-      nav_home: "בית",
-      nav_funkizuk: "פאנקיזוק",
-      nav_kaakoink: "קאקוינק",
-      nav_yad: "יד המלך",
-      nav_cart: "עגלה",
-      hero_title: "פונטים עם אישיות.",
-      hero_sub: "כלים עם לב.",
-      btn_browse: "דפדף באוסף",
-      card1_title: "פאנקיזוק",
-      card1_desc: "עוצב לקפוץ ולמשוך תשומת לב.",
-      card1_btn: "צפה בפונט",
-      card2_title: "קאקוינק",
-      card2_desc: "סנס-סריפ משחקי עם עקומות רכות.",
-      card2_btn: "צפה בפונט",
-      card3_title: "יד המלך",
-      card3_desc: "סריף אקספרסיבי השרוי במסורת וחום.",
-      card3_btn: "צפה בפונט",
-      cart_title: "העגלה שלך",
-      cart_total: "סה״כ:",
-      cart_checkout: "לתשלום",
-      footer: "© 2026 בצי-דוד — כלים עצמאיים עשויים באהבה"
+      nav_fonts: "פונטים", nav_graphics: "גרפיקה", nav_templates: "תבניות", nav_books: "ספרים", nav_cart: "עגלה",
+      hero_title: "נכסים יצירתיים לאמיצים.", hero_sub: "פונטים, תבניות וכלים עם אישיות.",
+      sec_fonts: "פונטים", sec_graphics: "חבילות גרפיקה", sec_templates: "תבניות קנבה", sec_books: "ספרים דיגיטליים",
+      btn_view: "צפה במוצר",
+      funk_desc: "עוצב לקפוץ ולמשוך תשומת לב.", kaa_desc: "סנס-סריפ משחקי עם עקומות רכות.", yad_desc: "סריף אקספרסיבי השרוי במסורת וחום.",
+      cart_title: "העגלה שלך", cart_total: "סה״כ:", cart_checkout: "לתשלום", footer: "© 2026 בצי-דוד — כלים עצמאיים עשויים באהבה"
     }
   };
 
-  // --- 2. GLOBAL VARIABLES ---
   let cart = JSON.parse(localStorage.getItem('betzyCart')) || [];
   let currentLang = localStorage.getItem('siteLang') || 'en';
 
-  // --- 3. FUNCTIONS ---
   function setLanguage(lang) {
     currentLang = lang;
     localStorage.setItem('siteLang', lang);
     document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr';
     document.documentElement.lang = lang;
-    
     document.querySelectorAll('[data-i18n]').forEach(elem => {
       const key = elem.getAttribute('data-i18n');
-      if(translations[lang][key]) {
-        elem.innerHTML = translations[lang][key];
-      }
+      if(translations[lang][key]) elem.innerHTML = translations[lang][key];
     });
-    renderCart(); // Re-render cart to update translated headers
+    renderCart();
   }
 
-  function toggleLanguage() {
-    setLanguage(currentLang === 'en' ? 'he' : 'en');
-  }
+  function toggleLanguage() { setLanguage(currentLang === 'en' ? 'he' : 'en'); }
 
-  function updateCartCount() {
-    document.getElementById('cartCount').textContent = cart.length;
-  }
+  function updateCartCount() { document.getElementById('cartCount').textContent = cart.length; }
 
   function renderCart() {
     const items = document.getElementById('cartItems');
     const total = document.getElementById('total');
-    items.innerHTML = '';
-    let sum = 0;
-    
+    items.innerHTML = ''; let sum = 0;
     if (cart.length === 0) {
       items.innerHTML = `<p>${translations[currentLang].cart_title} is empty.</p>`;
     } else {
       cart.forEach((item, index) => {
         sum += item.price;
-        items.innerHTML += `
-          <div class='cart-item'>
-            <div>${item.name} — $${item.price}</div>
-            <small style="cursor:pointer; color:red;" onclick="removeItem(${index})">Remove</small>
-          </div>`;
+        items.innerHTML += `<div class='cart-item'><div>${item.name} — $${item.price}</div><small style="cursor:pointer; color:red;" onclick="removeItem(${index})">Remove</small></div>`;
       });
     }
     total.textContent = sum;
@@ -328,21 +372,10 @@
     force ? c.classList.add('open') : c.classList.toggle('open');
     renderCart();
   }
+  function removeItem(index) { cart.splice(index, 1); renderCart(); }
+  function stripeCheckout() { if(cart.length === 0) return alert("Cart is empty!"); alert("Proceeding to checkout..."); }
 
-  function removeItem(index) {
-    cart.splice(index, 1);
-    renderCart();
-  }
-
-  function stripeCheckout() {
-    if(cart.length === 0) return alert("Cart is empty!");
-    alert("Proceeding to checkout...");
-  }
-
-  // --- 4. INIT ---
-  setLanguage(currentLang);
-  updateCartCount();
+  setLanguage(currentLang); updateCartCount();
 </script>
-
 </body>
 </html>
