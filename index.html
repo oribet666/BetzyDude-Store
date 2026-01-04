@@ -101,6 +101,30 @@
       box-shadow: var(--shadow);
     }
 
+    /* LANGUAGE & RTL STYLES */
+    html[dir="rtl"] {
+      direction: rtl;
+      text-align: right;
+    }
+    html[dir="rtl"] nav a {
+      margin-left: 0;
+      margin-right: 1.5rem;
+    }
+    .lang-btn {
+      background: #eee;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 0.9rem;
+      margin-right: 1.5rem;
+    }
+    html[dir="rtl"] .lang-btn {
+      margin-right: 0;
+      margin-left: 1.5rem;
+    }
+
     /* CART */
     #cart {
       position: fixed;
@@ -134,33 +158,6 @@
       opacity: 0.7;
       font-size: 0.9rem;
     }
-    /* RTL Support */
-html[dir="rtl"] {
-  direction: rtl;
-  text-align: right;
-}
-
-/* Flip specific margins/paddings for RTL if needed */
-html[dir="rtl"] nav a {
-  margin-left: 0;
-  margin-right: 1.5rem;
-}
-
-/* Language Toggle Button Style */
-.lang-btn {
-  background: #eee;
-  border: none;
-  padding: 0.4rem 0.8rem;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 0.9rem;
-  margin-right: 1.5rem; /* Space between link and button */
-}
-html[dir="rtl"] .lang-btn {
-  margin-right: 0;
-  margin-left: 1.5rem;
-}
   </style>
 </head>
 <body>
@@ -168,62 +165,136 @@ html[dir="rtl"] .lang-btn {
 <header>
   <strong>BetzyDude</strong>
   <nav>
-    <a href="index.html">Home</a>
-    <a href="funkizuk.html">Funkizuk</a>
-    <a href="kaakoink.html">Kaakoink</a>
-    <a href="yad.html">Yad Hamelech</a>
-    <a href="#" onclick="toggleCart()">Cart (<span id="cartCount">0</span>)</a>
+    <a href="index.html" data-i18n="nav_home">Home</a>
+    <a href="funkizuk.html" data-i18n="nav_funkizuk">Funkizuk</a>
+    <a href="kaakoink.html" data-i18n="nav_kaakoink">Kaakoink</a>
+    <a href="yad.html" data-i18n="nav_yad">Yad Hamelech</a>
+    <a href="#" onclick="toggleCart()" data-i18n="nav_cart">Cart (<span id="cartCount">0</span>)</a>
+    <button class="lang-btn" onclick="toggleLanguage()">EN / HE</button>
   </nav>
 </header>
 
 <section class="hero">
-  <h1>Fonts with personality.</h1>
-  <p style="font-size: 1.2rem; margin-bottom: 2rem;">Tools with heart.</p>
-  <a href="#collection" class="btn">Browse Collection</a>
+  <h1 data-i18n="hero_title">Fonts with personality.</h1>
+  <p data-i18n="hero_sub" style="font-size: 1.2rem; margin-bottom: 2rem;">Tools with heart.</p>
+  <a href="#collection" class="btn" data-i18n="btn_browse">Browse Collection</a>
 </section>
 
 <section class="section" id="collection">
   <div class="grid">
-    <!-- Preview Cards for Home Page -->
+    <!-- Card 1 -->
     <div class="card">
       <img src="images/FUNKIZUK Cover-01.png" alt="Funkizuk" />
-      <h3>Funkizuk</h3>
-      <p>Designed to bounce and grab attention.</p>
-      <a href="funkizuk.html" class="btn">View Font</a>
+      <h3 data-i18n="card1_title">Funkizuk</h3>
+      <p data-i18n="card1_desc">Designed to bounce and grab attention.</p>
+      <a href="funkizuk.html" class="btn" data-i18n="card1_btn">View Font</a>
     </div>
 
+    <!-- Card 2 -->
     <div class="card">
       <img src="images/Ka'akooink Square Cover.png" alt="Kaakoink" />
-      <h3>Kaakoink</h3>
-      <p>A playful sans-serif with soft curves.</p>
-      <a href="kaakoink.html" class="btn">View Font</a>
+      <h3 data-i18n="card2_title">Kaakoink</h3>
+      <p data-i18n="card2_desc">A playful sans-serif with soft curves.</p>
+      <a href="kaakoink.html" class="btn" data-i18n="card2_btn">View Font</a>
     </div>
 
+    <!-- Card 3 -->
     <div class="card">
       <img src="images/Yad Hamelech - Cover-01.png" alt="Yad Hamelech" />
-      <h3>Yad Hamelech</h3>
-      <p>An expressive serif inspired by tradition.</p>
-      <a href="yad.html" class="btn">View Font</a>
+      <h3 data-i18n="card3_title">Yad Hamelech</h3>
+      <p data-i18n="card3_desc">An expressive serif inspired by tradition.</p>
+      <a href="yad.html" class="btn" data-i18n="card3_btn">View Font</a>
     </div>
   </div>
 </section>
 
-<!-- CART SIDEBAR (Included on Home too so you can view cart) -->
+<!-- CART SIDEBAR -->
 <div id="cart">
   <button class="close-cart" onclick="toggleCart()">×</button>
-  <h2>Your Cart</h2>
+  <h2 data-i18n="cart_title">Your Cart</h2>
   <div id="cartItems"></div>
-  <p><strong>Total: $<span id="total">0</span></strong></p>
-  <button class="btn" onclick="stripeCheckout()">Checkout</button>
+  <p><strong data-i18n="cart_total">Total:</strong> $<span id="total">0</span></p>
+  <button class="btn" onclick="stripeCheckout()" data-i18n="cart_checkout">Checkout</button>
 </div>
 
-<footer>
+<footer data-i18n="footer">
   © 2026 BetzyDude — indie tools made with joy
 </footer>
 
 <script>
-  // Load cart from LocalStorage so it persists across pages
+  // --- 1. TRANSLATIONS ---
+  const translations = {
+    en: {
+      nav_home: "Home",
+      nav_funkizuk: "Funkizuk",
+      nav_kaakoink: "Kaakoink",
+      nav_yad: "Yad Hamelech",
+      nav_cart: "Cart",
+      hero_title: "Fonts with personality.",
+      hero_sub: "Tools with heart.",
+      btn_browse: "Browse Collection",
+      card1_title: "Funkizuk",
+      card1_desc: "Designed to bounce and grab attention.",
+      card1_btn: "View Font",
+      card2_title: "Kaakoink",
+      card2_desc: "A playful sans-serif with soft curves.",
+      card2_btn: "View Font",
+      card3_title: "Yad Hamelech",
+      card3_desc: "An expressive serif inspired by tradition.",
+      card3_btn: "View Font",
+      cart_title: "Your Cart",
+      cart_total: "Total:",
+      cart_checkout: "Checkout",
+      footer: "© 2026 BetzyDude — indie tools made with joy"
+    },
+    he: {
+      nav_home: "בית",
+      nav_funkizuk: "פאנקיזוק",
+      nav_kaakoink: "קאקוינק",
+      nav_yad: "יד המלך",
+      nav_cart: "עגלה",
+      hero_title: "פונטים עם אישיות.",
+      hero_sub: "כלים עם לב.",
+      btn_browse: "דפדף באוסף",
+      card1_title: "פאנקיזוק",
+      card1_desc: "עוצב לקפוץ ולמשוך תשומת לב.",
+      card1_btn: "צפה בפונט",
+      card2_title: "קאקוינק",
+      card2_desc: "סנס-סריפ משחקי עם עקומות רכות.",
+      card2_btn: "צפה בפונט",
+      card3_title: "יד המלך",
+      card3_desc: "סריף אקספרסיבי השרוי במסורת וחום.",
+      card3_btn: "צפה בפונט",
+      cart_title: "העגלה שלך",
+      cart_total: "סה״כ:",
+      cart_checkout: "לתשלום",
+      footer: "© 2026 בצי-דוד — כלים עצמאיים עשויים באהבה"
+    }
+  };
+
+  // --- 2. GLOBAL VARIABLES ---
   let cart = JSON.parse(localStorage.getItem('betzyCart')) || [];
+  let currentLang = localStorage.getItem('siteLang') || 'en';
+
+  // --- 3. FUNCTIONS ---
+  function setLanguage(lang) {
+    currentLang = lang;
+    localStorage.setItem('siteLang', lang);
+    document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr';
+    document.documentElement.lang = lang;
+    
+    document.querySelectorAll('[data-i18n]').forEach(elem => {
+      const key = elem.getAttribute('data-i18n');
+      if(translations[lang][key]) {
+        elem.innerHTML = translations[lang][key];
+      }
+    });
+    renderCart(); // Re-render cart to update translated headers
+  }
+
+  function toggleLanguage() {
+    setLanguage(currentLang === 'en' ? 'he' : 'en');
+  }
 
   function updateCartCount() {
     document.getElementById('cartCount').textContent = cart.length;
@@ -236,7 +307,7 @@ html[dir="rtl"] .lang-btn {
     let sum = 0;
     
     if (cart.length === 0) {
-      items.innerHTML = '<p>Your cart is empty.</p>';
+      items.innerHTML = `<p>${translations[currentLang].cart_title} is empty.</p>`;
     } else {
       cart.forEach((item, index) => {
         sum += item.price;
@@ -249,14 +320,13 @@ html[dir="rtl"] .lang-btn {
     }
     total.textContent = sum;
     updateCartCount();
-    // Save to local storage every time we render
     localStorage.setItem('betzyCart', JSON.stringify(cart));
   }
 
   function toggleCart(force = false) {
     const c = document.getElementById('cart');
     force ? c.classList.add('open') : c.classList.toggle('open');
-    renderCart(); // Refresh cart when opened
+    renderCart();
   }
 
   function removeItem(index) {
@@ -266,11 +336,11 @@ html[dir="rtl"] .lang-btn {
 
   function stripeCheckout() {
     if(cart.length === 0) return alert("Cart is empty!");
-    // Logic here remains the same
-    alert("Proceeding to checkout with items: " + JSON.stringify(cart));
+    alert("Proceeding to checkout...");
   }
 
-  // Initialize count on load
+  // --- 4. INIT ---
+  setLanguage(currentLang);
   updateCartCount();
 </script>
 
