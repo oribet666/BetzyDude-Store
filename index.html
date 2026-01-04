@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BetzyDude Fonts</title>
+  <style>
+    :root {
+      --bg: #faf9f7;
+      --text: #111;
+      --accent: #ff6f61;
+      --card: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    header {
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+    }
+    .hero {
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      margin-bottom: 1rem;
+    }
+    .hero input {
+      padding: 0.75rem 1rem;
+      font-size: 1.2rem;
+      width: min(500px, 90%);
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.8rem 1.4rem;
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+    .section {
+      padding: 4rem 2rem;
+      max-width: 1100px;
+      margin: auto;
+    }
+    .fonts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .card {
+      background: var(--card);
+      padding: 2rem;
+      border-radius: 14px;
+      transition: transform 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+    }
+    .card h3 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    footer {
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <strong>BetzyDude</strong>
+    <nav>
+      <a href="#fonts">Fonts</a>
+      <a href="#about">About</a>
+      <a href="#support">Support</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1 id="preview">Fonts that don’t take themselves too seriously</h1>
+    <input type="text" placeholder="Type something fun" oninput="preview.textContent = this.value || 'Fonts that don’t take themselves too seriously'" />
+    <br />
+    <a class="btn" href="#fonts">Explore Fonts</a>
+  </section>
+
+  <section class="section" id="fonts">
+    <h2>Launch Fonts</h2>
+    <div class="fonts">
+      <div class="card">
+        <h3>Font One</h3>
+        <p>Playful display font with personality.</p>
+        <a class="btn" href="#">View Font</a>
+      </div>
+      <div class="card">
+        <h3>Font Two</h3>
+        <p>Friendly sans-serif for modern projects.</p>
+        <a class="btn" href="#">View Font</a>
+      </div>
+      <div class="card">
+        <h3>Font Three</h3>
+        <p>Expressive serif made to stand out.</p>
+        <a class="btn" href="#">View Font</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <h2>About BetzyDude</h2>
+    <p>BetzyDude is an independent type project focused on playful, accessible fonts for designers, students, brands, and creators.</p>
+  </section>
+
+  <section class="section" id="support">
+    <h2>Support</h2>
+    <p>Questions about licensing or usage? Reach out at <strong>support@betzydude.com</strong></p>
+  </section>
+
+  <footer>
+    © 2026 BetzyDude Fonts
+  </footer>
+</body>
+</html>
