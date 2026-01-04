@@ -6,7 +6,6 @@
   <title>Yad Hamelech — BetzyDude</title>
   
   <style>
-    /* STYLES - Matches the rest of the site */
     :root {
       --bg: #fff8f2;
       --text: #1b1b1b;
@@ -36,7 +35,6 @@
     }
     nav a { margin-left: 1.5rem; text-decoration: none; color: var(--text); font-weight: 600; }
     
-    /* Product Specific Styles */
     .product-container {
       max-width: 800px;
       margin: 4rem auto;
@@ -75,7 +73,31 @@
       width: 100%;
     }
 
-    /* Cart Styles */
+    /* LANGUAGE & RTL STYLES */
+    html[dir="rtl"] {
+      direction: rtl;
+      text-align: right;
+    }
+    html[dir="rtl"] nav a {
+      margin-left: 0;
+      margin-right: 1.5rem;
+    }
+    .lang-btn {
+      background: #eee;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 0.9rem;
+      margin-right: 1.5rem;
+    }
+    html[dir="rtl"] .lang-btn {
+      margin-right: 0;
+      margin-left: 1.5rem;
+    }
+
+    /* CART */
     #cart {
       position: fixed; top: 0; right: 0; width: 360px; height: 100%;
       background: white; padding: 1.5rem;
@@ -92,11 +114,12 @@
 <header>
   <strong>BetzyDude</strong>
   <nav>
-    <a href="index.html">Home</a>
-    <a href="funkizuk.html">Funkizuk</a>
-    <a href="kaakoink.html">Kaakoink</a>
-    <a href="yad.html">Yad Hamelech</a>
-    <a href="#" onclick="toggleCart()">Cart (<span id="cartCount">0</span>)</a>
+    <a href="index.html" data-i18n="nav_home">Home</a>
+    <a href="funkizuk.html" data-i18n="nav_funkizuk">Funkizuk</a>
+    <a href="kaakoink.html" data-i18n="nav_kaakoink">Kaakoink</a>
+    <a href="yad.html" data-i18n="nav_yad">Yad Hamelech</a>
+    <a href="#" onclick="toggleCart()" data-i18n="nav_cart">Cart (<span id="cartCount">0</span>)</a>
+    <button class="lang-btn" onclick="toggleLanguage()">EN / HE</button>
   </nav>
 </header>
 
@@ -108,10 +131,10 @@
 
   <!-- Right: Details -->
   <div class="product-details">
-    <h1>Yad Hamelech</h1>
-    <p>Yad Hamelech is an expressive serif inspired by tradition, warmth, and storytelling. Designed for editorial and branding.</p>
+    <h1 data-i18n="product_title">Yad Hamelech</h1>
+    <p data-i18n="product_desc">Yad Hamelech is an expressive serif inspired by tradition, warmth, and storytelling. Designed for editorial and branding.</p>
     
-    <label><strong>Select License:</strong></label>
+    <label><strong data-i18n="license_label">Select License:</strong></label>
     <select id="licenseSelect" onchange="updatePriceDisplay()">
       <option value="49">Personal — $49</option>
       <option value="85">Commercial — $85</option>
@@ -120,34 +143,84 @@
     <div class="price" id="priceDisplay">$49</div>
     <br><br>
 
-    <button class="btn" onclick="addFontToCart()">Add to Cart</button>
-    <p style="margin-top:1rem; font-size: 0.9rem; color: #888;">Instant download after purchase.</p>
+    <button class="btn" onclick="addFontToCart()" data-i18n="btn_add">Add to Cart</button>
+    <p data-i18n="download_note" style="margin-top:1rem; font-size: 0.9rem; color: #888;">Instant download after purchase.</p>
   </div>
 </main>
 
 <!-- CART SIDEBAR -->
 <div id="cart">
   <button class="close-cart" onclick="toggleCart()">×</button>
-  <h2>Your Cart</h2>
+  <h2 data-i18n="cart_title">Your Cart</h2>
   <div id="cartItems"></div>
-  <p><strong>Total: $<span id="total">0</span></strong></p>
-  <button class="btn" onclick="stripeCheckout()">Checkout</button>
+  <p><strong data-i18n="cart_total">Total:</strong> $<span id="total">0</span></p>
+  <button class="btn" onclick="stripeCheckout()" data-i18n="cart_checkout">Checkout</button>
 </div>
 
 <script>
-  // --- LOGIC START ---
-  let cart = JSON.parse(localStorage.getItem('betzyCart')) || [];
+  const translations = {
+    en: {
+      nav_home: "Home",
+      nav_funkizuk: "Funkizuk",
+      nav_kaakoink: "Kaakoink",
+      nav_yad: "Yad Hamelech",
+      nav_cart: "Cart",
+      product_title: "Yad Hamelech",
+      product_desc: "Yad Hamelech is an expressive serif inspired by tradition, warmth, and storytelling.",
+      license_label: "Select License:",
+      btn_add: "Add to Cart",
+      download_note: "Instant download after purchase.",
+      cart_title: "Your Cart",
+      cart_total: "Total:",
+      cart_checkout: "Checkout"
+    },
+    he: {
+      nav_home: "בית",
+      nav_funkizuk: "פאנקיזוק",
+      nav_kaakoink: "קאקוינק",
+      nav_yad: "יד המלך",
+      nav_cart: "עגלה",
+      product_title: "יד המלך",
+      product_desc: "יד המלך הוא סריף אקספרסיבי השרוי במסורת, חום וסיפורת.",
+      license_label: "בחר רישיון:",
+      btn_add: "הוספה לעגלה",
+      download_note: "הורדה מיידית לאחר הרכישה.",
+      cart_title: "העגלה שלך",
+      cart_total: "סה״כ:",
+      cart_checkout: "לתשלום"
+    }
+  };
 
-  // 1. Update Price on Dropdown Change
+  let cart = JSON.parse(localStorage.getItem('betzyCart')) || [];
+  let currentLang = localStorage.getItem('siteLang') || 'en';
+
+  function setLanguage(lang) {
+    currentLang = lang;
+    localStorage.setItem('siteLang', lang);
+    document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr';
+    document.documentElement.lang = lang;
+    
+    document.querySelectorAll('[data-i18n]').forEach(elem => {
+      const key = elem.getAttribute('data-i18n');
+      if(translations[lang][key]) {
+        elem.innerHTML = translations[lang][key];
+      }
+    });
+    saveAndRender();
+  }
+
+  function toggleLanguage() {
+    setLanguage(currentLang === 'en' ? 'he' : 'en');
+  }
+
   function updatePriceDisplay() {
     const select = document.getElementById('licenseSelect');
     const display = document.getElementById('priceDisplay');
     display.textContent = '$' + select.value;
   }
 
-  // 2. Add to Cart
   function addFontToCart() {
-    const fontName = "Yad Hamelech"; // SPECIFIC TO THIS PAGE
+    const fontName = translations[currentLang].product_title; 
     const select = document.getElementById('licenseSelect');
     const licenseType = select.options[select.selectedIndex].text.split('—')[0].trim();
     const price = parseInt(select.value);
@@ -155,10 +228,9 @@
     cart.push({ name: `${fontName} (${licenseType})`, price: price });
     
     saveAndRender();
-    toggleCart(true); // Open cart immediately
+    toggleCart(true);
   }
 
-  // 3. Render Cart & Save to LocalStorage
   function saveAndRender() {
     localStorage.setItem('betzyCart', JSON.stringify(cart));
     
@@ -169,36 +241,43 @@
     items.innerHTML = '';
     let sum = 0;
     
-    cart.forEach((item, index) => {
-      sum += item.price;
-      items.innerHTML += `
-        <div class='cart-item'>
-          <div>${item.name} — $${item.price}</div>
-          <small style="cursor:pointer; color:red;" onclick="removeItem(${index})">Remove</small>
-        </div>`;
-    });
+    if (cart.length === 0) {
+      items.innerHTML = `<p>${translations[currentLang].cart_title} is empty.</p>`;
+    } else {
+      cart.forEach((item, index) => {
+        sum += item.price;
+        items.innerHTML += `
+          <div class='cart-item'>
+            <div>${item.name} — $${item.price}</div>
+            <small style="cursor:pointer; color:red;" onclick="removeItem(${index})">Remove</small>
+          </div>`;
+      });
+    }
     
     total.textContent = sum;
     count.textContent = cart.length;
   }
 
-  // 4. Toggle Cart
   function toggleCart(force = false) {
     const c = document.getElementById('cart');
     force ? c.classList.add('open') : c.classList.toggle('open');
-    saveAndRender(); // Refresh contents when opening
+    saveAndRender();
   }
 
-  // 5. Remove Item
   function removeItem(index) {
     cart.splice(index, 1);
     saveAndRender();
   }
 
-  // Initialize on load
+  function stripeCheckout() {
+    if(cart.length === 0) return alert("Cart is empty!");
+    alert("Proceeding to checkout...");
+  }
+
+  // Init
   updatePriceDisplay();
   document.getElementById('cartCount').textContent = cart.length;
-  // --- LOGIC END ---
+  setLanguage(currentLang);
 </script>
 
 </body>
