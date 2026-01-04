@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yad Hamelech — BetzyDude</title>
+  
+  <style>
+    /* STYLES - Matches the rest of the site */
+    :root {
+      --bg: #fff8f2;
+      --text: #1b1b1b;
+      --accent: #ff9aa2;
+      --accent-2: #b8e1d9;
+      --accent-3: #cdb4db;
+      --card: #ffffff;
+      --shadow: 0 16px 40px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: linear-gradient(180deg, var(--bg), #ffffff);
+      color: var(--text);
+    }
+    header {
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      background: rgba(255,248,242,0.85);
+      backdrop-filter: blur(12px);
+      z-index: 10;
+    }
+    nav a { margin-left: 1.5rem; text-decoration: none; color: var(--text); font-weight: 600; }
+    
+    /* Product Specific Styles */
+    .product-container {
+      max-width: 800px;
+      margin: 4rem auto;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    
+    @media(max-width: 768px) {
+      .product-container { grid-template-columns: 1fr; }
+    }
+
+    .product-details h1 { font-size: 3rem; margin-bottom: 0.5rem; }
+    .price { font-size: 1.5rem; color: var(--accent); font-weight: bold; }
+    
+    select {
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+      margin: 1rem 0;
+      font-size: 1rem;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent-3));
+      border-radius: 999px;
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 1.1rem;
+      box-shadow: var(--shadow);
+      width: 100%;
+    }
+
+    /* Cart Styles */
+    #cart {
+      position: fixed; top: 0; right: 0; width: 360px; height: 100%;
+      background: white; padding: 1.5rem;
+      box-shadow: -10px 0 40px rgba(0,0,0,0.18);
+      transform: translateX(110%); transition: transform 0.45s cubic-bezier(.4,0,.2,1); z-index: 20;
+    }
+    #cart.open { transform: translateX(0); }
+    .close-cart { background: none; border: none; font-size: 1.5rem; float: right; cursor: pointer; }
+    .cart-item { margin-bottom: 0.8rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; }
+  </style>
+</head>
+<body>
+
+<header>
+  <strong>BetzyDude</strong>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="funkizuk.html">Funkizuk</a>
+    <a href="kaakoink.html">Kaakoink</a>
+    <a href="yad.html">Yad Hamelech</a>
+    <a href="#" onclick="toggleCart()">Cart (<span id="cartCount">0</span>)</a>
+  </nav>
+</header>
+
+<main class="product-container">
+  <!-- Left: Image -->
+  <div>
+    <img src="images/Yad Hamelech - Cover-01.png" alt="Yad Hamelech font preview" style="width:100%; border-radius:26px; box-shadow: var(--shadow);" />
+  </div>
+
+  <!-- Right: Details -->
+  <div class="product-details">
+    <h1>Yad Hamelech</h1>
+    <p>Yad Hamelech is an expressive serif inspired by tradition, warmth, and storytelling. Designed for editorial and branding.</p>
+    
+    <label><strong>Select License:</strong></label>
+    <select id="licenseSelect" onchange="updatePriceDisplay()">
+      <option value="49">Personal — $49</option>
+      <option value="85">Commercial — $85</option>
+    </select>
+
+    <div class="price" id="priceDisplay">$49</div>
+    <br><br>
+
+    <button class="btn" onclick="addFontToCart()">Add to Cart</button>
+    <p style="margin-top:1rem; font-size: 0.9rem; color: #888;">Instant download after purchase.</p>
+  </div>
+</main>
+
+<!-- CART SIDEBAR -->
+<div id="cart">
+  <button class="close-cart" onclick="toggleCart()">×</button>
+  <h2>Your Cart</h2>
+  <div id="cartItems"></div>
+  <p><strong>Total: $<span id="total">0</span></strong></p>
+  <button class="btn" onclick="stripeCheckout()">Checkout</button>
+</div>
+
+<script>
+  // --- LOGIC START ---
+  let cart = JSON.parse(localStorage.getItem('betzyCart')) || [];
+
+  // 1. Update Price on Dropdown Change
+  function updatePriceDisplay() {
+    const select = document.getElementById('licenseSelect');
+    const display = document.getElementById('priceDisplay');
+    display.textContent = '$' + select.value;
+  }
+
+  // 2. Add to Cart
+  function addFontToCart() {
+    const fontName = "Yad Hamelech"; // SPECIFIC TO THIS PAGE
+    const select = document.getElementById('licenseSelect');
+    const licenseType = select.options[select.selectedIndex].text.split('—')[0].trim();
+    const price = parseInt(select.value);
+
+    cart.push({ name: `${fontName} (${licenseType})`, price: price });
+    
+    saveAndRender();
+    toggleCart(true); // Open cart immediately
+  }
+
+  // 3. Render Cart & Save to LocalStorage
+  function saveAndRender() {
+    localStorage.setItem('betzyCart', JSON.stringify(cart));
+    
+    const items = document.getElementById('cartItems');
+    const total = document.getElementById('total');
+    const count = document.getElementById('cartCount');
+    
+    items.innerHTML = '';
+    let sum = 0;
+    
+    cart.forEach((item, index) => {
+      sum += item.price;
+      items.innerHTML += `
+        <div class='cart-item'>
+          <div>${item.name} — $${item.price}</div>
+          <small style="cursor:pointer; color:red;" onclick="removeItem(${index})">Remove</small>
+        </div>`;
+    });
+    
+    total.textContent = sum;
+    count.textContent = cart.length;
+  }
+
+  // 4. Toggle Cart
+  function toggleCart(force = false) {
+    const c = document.getElementById('cart');
+    force ? c.classList.add('open') : c.classList.toggle('open');
+    saveAndRender(); // Refresh contents when opening
+  }
+
+  // 5. Remove Item
+  function removeItem(index) {
+    cart.splice(index, 1);
+    saveAndRender();
+  }
+
+  // Initialize on load
+  updatePriceDisplay();
+  document.getElementById('cartCount').textContent = cart.length;
+  // --- LOGIC END ---
+</script>
+
+</body>
+</html>
