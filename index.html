@@ -134,6 +134,33 @@
       opacity: 0.7;
       font-size: 0.9rem;
     }
+    /* RTL Support */
+html[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+/* Flip specific margins/paddings for RTL if needed */
+html[dir="rtl"] nav a {
+  margin-left: 0;
+  margin-right: 1.5rem;
+}
+
+/* Language Toggle Button Style */
+.lang-btn {
+  background: #eee;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-right: 1.5rem; /* Space between link and button */
+}
+html[dir="rtl"] .lang-btn {
+  margin-right: 0;
+  margin-left: 1.5rem;
+}
   </style>
 </head>
 <body>
