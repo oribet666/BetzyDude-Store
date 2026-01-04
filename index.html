@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BetzyDude Fonts</title>
+  <title>BetzyDude – Playful Digital Shop</title>
   <style>
     :root {
       --bg: #faf9f7;
@@ -45,22 +45,24 @@
     }
     .btn {
       display: inline-block;
-      margin-top: 2rem;
+      margin-top: 1rem;
       padding: 0.8rem 1.4rem;
       background: var(--accent);
       color: white;
       text-decoration: none;
       border-radius: 6px;
       font-weight: 600;
+      cursor: pointer;
+      border: none;
     }
     .section {
       padding: 4rem 2rem;
       max-width: 1100px;
       margin: auto;
     }
-    .fonts {
+    .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 2rem;
     }
     .card {
@@ -69,71 +71,142 @@
       border-radius: 14px;
       transition: transform 0.2s ease;
     }
-    .card:hover {
-      transform: translateY(-6px);
-    }
-    .card h3 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
+    .card:hover { transform: translateY(-6px); }
+    .card h3 { font-size: 1.6rem; }
     footer {
       padding: 2rem;
       text-align: center;
       font-size: 0.9rem;
       opacity: 0.7;
     }
+    /* Cart */
+    #cart {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 320px;
+      height: 100%;
+      background: white;
+      padding: 1.5rem;
+      box-shadow: -4px 0 20px rgba(0,0,0,0.1);
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+    }
+    #cart.open { transform: translateX(0); }
+    #cart h2 { margin-top: 0; }
+    .cart-item { margin-bottom: 1rem; font-size: 0.95rem; }
   </style>
 </head>
 <body>
-  <header>
-    <strong>BetzyDude</strong>
-    <nav>
-      <a href="#fonts">Fonts</a>
-      <a href="#about">About</a>
-      <a href="#support">Support</a>
-    </nav>
-  </header>
 
-  <section class="hero">
-    <h1 id="preview">Fonts that don’t take themselves too seriously</h1>
-    <input type="text" placeholder="Type something fun" oninput="preview.textContent = this.value || 'Fonts that don’t take themselves too seriously'" />
-    <br />
-    <a class="btn" href="#fonts">Explore Fonts</a>
-  </section>
+<header>
+  <strong>BetzyDude</strong>
+  <nav>
+    <a href="#shop">Shop</a>
+    <a href="#about">About</a>
+    <a href="#support">Support</a>
+    <a href="#" onclick="toggleCart()">Cart</a>
+  </nav>
+</header>
 
-  <section class="section" id="fonts">
-    <h2>Launch Fonts</h2>
-    <div class="fonts">
-      <div class="card">
-        <h3>Font One</h3>
-        <p>Playful display font with personality.</p>
-        <a class="btn" href="#">View Font</a>
-      </div>
-      <div class="card">
-        <h3>Font Two</h3>
-        <p>Friendly sans-serif for modern projects.</p>
-        <a class="btn" href="#">View Font</a>
-      </div>
-      <div class="card">
-        <h3>Font Three</h3>
-        <p>Expressive serif made to stand out.</p>
-        <a class="btn" href="#">View Font</a>
-      </div>
+<section class="hero">
+  <h1 id="preview">Playful tools for creative people</h1>
+  <input type="text" placeholder="Type something fun" oninput="preview.textContent = this.value || 'Playful tools for creative people'" />
+  <br />
+  <a class="btn" href="#shop">Shop All Products</a>
+</section>
+
+<section class="section" id="shop">
+  <h2>Shop</h2>
+  <div class="grid">
+
+    <div class="card">
+      <h3>Font Pack One</h3>
+      <p>Playful display font for bold ideas.</p>
+      <strong>$25</strong><br />
+      <button class="btn" onclick="addToCart('Font Pack One', 25)">Buy Font</button>
     </div>
-  </section>
 
-  <section class="section" id="about">
-    <h2>About BetzyDude</h2>
-    <p>BetzyDude is an independent type project focused on playful, accessible fonts for designers, students, brands, and creators.</p>
-  </section>
+    <div class="card">
+      <h3>Graphic Assets Bundle</h3>
+      <p>Icons, textures, and shapes.</p>
+      <strong>$18</strong><br />
+      <button class="btn" onclick="addToCart('Graphic Assets Bundle', 18)">Buy Assets</button>
+    </div>
 
-  <section class="section" id="support">
-    <h2>Support</h2>
-    <p>Questions about licensing or usage? Reach out at <strong>support@betzydude.com</strong></p>
-  </section>
+    <div class="card">
+      <h3>Canva Template Pack</h3>
+      <p>Editable social & brand templates.</p>
+      <strong>$22</strong><br />
+      <button class="btn" onclick="addToCart('Canva Template Pack', 22)">Buy Template</button>
+    </div>
 
-  <footer>
-    © 2026 BetzyDude Fonts
-  </footer>
+    <div class="card">
+      <h3>Digital Book</h3>
+      <p>A friendly guide to playful design.</p>
+      <strong>$15</strong><br />
+      <button class="btn" onclick="addToCart('Digital Book', 15)">Buy Book</button>
+    </div>
+
+  </div>
+</section>
+
+<section class="section" id="about">
+  <h2>About BetzyDude</h2>
+  <p>BetzyDude is a playful digital studio creating fonts, assets, templates, and creative tools for designers, students, brands, and creators.</p>
+</section>
+
+<section class="section" id="support">
+  <h2>Support</h2>
+  <p>Email: <strong>support@betzydude.com</strong></p>
+</section>
+
+<footer>
+  © 2026 BetzyDude
+</footer>
+
+<!-- CART -->
+<div id="cart">
+  <h2>Your Cart</h2>
+  <div id="cartItems"></div>
+  <p><strong>Total: $<span id="total">0</span></strong></p>
+  <button class="btn" onclick="checkout()">Checkout</button>
+</div>
+
+<script>
+  let cart = [];
+
+  function addToCart(name, price) {
+    cart.push({ name, price });
+    renderCart();
+    toggleCart(true);
+  }
+
+  function renderCart() {
+    const items = document.getElementById('cartItems');
+    const total = document.getElementById('total');
+    items.innerHTML = '';
+    let sum = 0;
+    cart.forEach(item => {
+      sum += item.price;
+      items.innerHTML += `<div class='cart-item'>${item.name} — $${item.price}</div>`;
+    });
+    total.textContent = sum;
+  }
+
+  function toggleCart(forceOpen = false) {
+    const cartEl = document.getElementById('cart');
+    if (forceOpen) cartEl.classList.add('open');
+    else cartEl.classList.toggle('open');
+  }
+
+  function checkout() {
+    alert('Checkout complete! (Connect Stripe or Lemon Squeezy here)');
+    cart = [];
+    renderCart();
+    toggleCart();
+  }
+</script>
+
 </body>
 </html>
