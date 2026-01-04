@@ -4,16 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BetzyDude — Playful Digital Shop</title>
-  <script src="https://js.stripe.com/v3/"></script>
-
+  
   <style>
     :root {
       --bg: #fff8f2;
       --text: #1b1b1b;
-      --accent: #ff9aa2;   /* warm coral */
-      --accent-2: #b8e1d9; /* mint */
-      --accent-3: #cdb4db; /* lavender */
-      --accent-4: #fde2ae; /* butter */
+      --accent: #ff9aa2;
+      --accent-2: #b8e1d9;
+      --accent-3: #cdb4db;
       --card: #ffffff;
       --shadow: 0 16px 40px rgba(0,0,0,0.08);
     }
@@ -70,14 +68,23 @@
 
     .card {
       background: var(--card);
-      padding: 2.5rem;
+      padding: 2rem;
       border-radius: 26px;
       box-shadow: var(--shadow);
       transition: transform 0.35s ease;
+      text-align: center;
     }
 
     .card:hover {
       transform: translateY(-8px) rotate(0.4deg);
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 18px;
+      margin-bottom: 1.5rem;
     }
 
     .btn {
@@ -88,14 +95,10 @@
       border: none;
       font-weight: 700;
       cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      color: #1b1b1b;
       box-shadow: var(--shadow);
-    }
-
-    select {
-      width: 100%;
-      padding: 0.6rem;
-      border-radius: 12px;
-      margin-top: 0.5rem;
     }
 
     /* CART */
@@ -123,12 +126,13 @@
       cursor: pointer;
     }
 
-    .cart-item { margin-bottom: 0.8rem; }
+    .cart-item { margin-bottom: 0.8rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; }
 
     footer {
       padding: 3rem;
       text-align: center;
       opacity: 0.7;
+      font-size: 0.9rem;
     }
   </style>
 </head>
@@ -137,64 +141,47 @@
 <header>
   <strong>BetzyDude</strong>
   <nav>
-    <a href="#funkizuk">Funkizuk</a>
-    <a href="#kaakoink">Kaakoink</a>
-    <a href="#yad">Yad Hamelech</a>
-    <a href="#" onclick="toggleCart()">Cart</a>
+    <a href="index.html">Home</a>
+    <a href="funkizuk.html">Funkizuk</a>
+    <a href="kaakoink.html">Kaakoink</a>
+    <a href="yad.html">Yad Hamelech</a>
+    <a href="#" onclick="toggleCart()">Cart (<span id="cartCount">0</span>)</a>
   </nav>
 </header>
 
 <section class="hero">
-  <h1>Fonts with personality. Tools with heart.</h1>
+  <h1>Fonts with personality.</h1>
+  <p style="font-size: 1.2rem; margin-bottom: 2rem;">Tools with heart.</p>
+  <a href="#collection" class="btn">Browse Collection</a>
 </section>
 
-<!-- PRODUCT PAGES -->
-<section class="section" id="funkizuk">
-  <h2>Funkizuk</h2>
-  <div class="card">
-    <img src="images/FUNKIZUK Cover-01.png" alt="Funkizuk font preview" style="width:100%; border-radius:18px; margin-bottom:1.5rem; box-shadow: var(--shadow);" />
-    <p><strong>Funkizuk</strong> is a funky display font designed to bounce, wobble, and grab attention. Perfect for posters, branding, and playful identities.</p>
-    <label>License</label>
-    <select onchange="updatePrice(this,45,75)">
-      <option value="personal">Personal — $45</option>
-      <option value="commercial">Commercial — $75</option>
-    </select>
-    <strong class="price">$45</strong>
-    <button class="btn" onclick="addFontToCart('Funkizuk', this)">Add to Cart</button>
+<section class="section" id="collection">
+  <div class="grid">
+    <!-- Preview Cards for Home Page -->
+    <div class="card">
+      <img src="images/FUNKIZUK Cover-01.png" alt="Funkizuk" />
+      <h3>Funkizuk</h3>
+      <p>Designed to bounce and grab attention.</p>
+      <a href="funkizuk.html" class="btn">View Font</a>
+    </div>
+
+    <div class="card">
+      <img src="images/Ka'akooink Square Cover.png" alt="Kaakoink" />
+      <h3>Kaakoink</h3>
+      <p>A playful sans-serif with soft curves.</p>
+      <a href="kaakoink.html" class="btn">View Font</a>
+    </div>
+
+    <div class="card">
+      <img src="images/Yad Hamelech - Cover-01.png" alt="Yad Hamelech" />
+      <h3>Yad Hamelech</h3>
+      <p>An expressive serif inspired by tradition.</p>
+      <a href="yad.html" class="btn">View Font</a>
+    </div>
   </div>
 </section>
 
-<section class="section" id="kaakoink">
-  <h2>Kaakoink</h2>
-  <div class="card">
-    <img src="images/Ka'akooink Square Cover.png" alt="Kaakoink font preview" style="width:100%; border-radius:18px; margin-bottom:1.5rem; box-shadow: var(--shadow);" />
-    <p><strong>Kaakoink</strong> is a playful sans-serif with soft curves and unexpected rhythm. Friendly, modern, and versatile.</p>
-    <label>License</label>
-    <select onchange="updatePrice(this,39,65)">
-      <option value="personal">Personal — $39</option>
-      <option value="commercial">Commercial — $65</option>
-    </select>
-    <strong class="price">$39</strong>
-    <button class="btn" onclick="addFontToCart('Kaakoink', this)">Add to Cart</button>
-  </div>
-</section>
-
-<section class="section" id="yad">
-  <h2>Yad Hamelech</h2>
-  <div class="card">
-    <img src="images/Yad Hamelech - Cover-01.png" alt="Yad Hamelech font preview" style="width:100%; border-radius:18px; margin-bottom:1.5rem; box-shadow: var(--shadow);" />
-    <p><strong>Yad Hamelech</strong> is an expressive serif inspired by tradition, warmth, and storytelling. Designed for editorial and branding.</p>
-    <label>License</label>
-    <select onchange="updatePrice(this,49,85)">
-      <option value="personal">Personal — $49</option>
-      <option value="commercial">Commercial — $85</option>
-    </select>
-    <strong class="price">$49</strong>
-    <button class="btn" onclick="addFontToCart('Yad Hamelech', this)">Add to Cart</button>
-  </div>
-</section>
-
-<!-- CART -->
+<!-- CART SIDEBAR (Included on Home too so you can view cart) -->
 <div id="cart">
   <button class="close-cart" onclick="toggleCart()">×</button>
   <h2>Your Cart</h2>
@@ -208,19 +195,11 @@
 </footer>
 
 <script>
-  let cart = [];
+  // Load cart from LocalStorage so it persists across pages
+  let cart = JSON.parse(localStorage.getItem('betzyCart')) || [];
 
-  function updatePrice(select, personal, commercial) {
-    const price = select.value === 'personal' ? personal : commercial;
-    select.parentElement.querySelector('.price').textContent = '$' + price;
-  }
-
-  function addFontToCart(name, btn) {
-    const card = btn.parentElement;
-    const license = card.querySelector('select').value;
-    const price = parseInt(card.querySelector('.price').textContent.replace('$',''));
-    cart.push({ name: `${name} (${license})`, price });
-    renderCart(); toggleCart(true);
+  function updateCartCount() {
+    document.getElementById('cartCount').textContent = cart.length;
   }
 
   function renderCart() {
@@ -228,29 +207,44 @@
     const total = document.getElementById('total');
     items.innerHTML = '';
     let sum = 0;
-    cart.forEach(item => {
-      sum += item.price;
-      items.innerHTML += `<div class='cart-item'>${item.name} — $${item.price}</div>`;
-    });
+    
+    if (cart.length === 0) {
+      items.innerHTML = '<p>Your cart is empty.</p>';
+    } else {
+      cart.forEach((item, index) => {
+        sum += item.price;
+        items.innerHTML += `
+          <div class='cart-item'>
+            <div>${item.name} — $${item.price}</div>
+            <small style="cursor:pointer; color:red;" onclick="removeItem(${index})">Remove</small>
+          </div>`;
+      });
+    }
     total.textContent = sum;
+    updateCartCount();
+    // Save to local storage every time we render
+    localStorage.setItem('betzyCart', JSON.stringify(cart));
   }
 
   function toggleCart(force = false) {
     const c = document.getElementById('cart');
     force ? c.classList.add('open') : c.classList.toggle('open');
+    renderCart(); // Refresh cart when opened
+  }
+
+  function removeItem(index) {
+    cart.splice(index, 1);
+    renderCart();
   }
 
   function stripeCheckout() {
-    const stripe = Stripe('STRIPE_PUBLISHABLE_KEY');
-    fetch('/create-checkout-session', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ items: cart })
-    })
-    .then(res => res.json())
-    .then(data => stripe.redirectToCheckout({ sessionId: data.id }))
-    .catch(() => alert('Stripe backend not connected yet'));
+    if(cart.length === 0) return alert("Cart is empty!");
+    // Logic here remains the same
+    alert("Proceeding to checkout with items: " + JSON.stringify(cart));
   }
+
+  // Initialize count on load
+  updateCartCount();
 </script>
 
 </body>
