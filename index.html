@@ -4,179 +4,34 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BetzyDude — Creative Assets</title>
-  
   <style>
-    :root {
-      --bg: #fff8f2;
-      --text: #1b1b1b;
-      --accent: #ff9aa2;
-      --accent-2: #b8e1d9;
-      --accent-3: #cdb4db;
-      --card: #ffffff;
-      --shadow: 0 16px 40px rgba(0,0,0,0.08);
-    }
-
+    :root { --bg: #fff8f2; --text: #1b1b1b; --accent: #ff9aa2; --accent-2: #b8e1d9; --accent-3: #cdb4db; --card: #ffffff; --shadow: 0 16px 40px rgba(0,0,0,0.08); }
     * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      font-family: system-ui, sans-serif;
-      background: linear-gradient(180deg, var(--bg), #ffffff);
-      color: var(--text);
-    }
-
-    header {
-      padding: 1.5rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      background: rgba(255,248,242,0.85);
-      backdrop-filter: blur(12px);
-      z-index: 10;
-    }
-
-    nav a {
-      margin-left: 1.5rem;
-      text-decoration: none;
-      color: var(--text);
-      font-weight: 600;
-      font-size: 0.95rem;
-    }
-
-    .hero {
-      padding: 5rem 2rem 3rem;
-      text-align: center;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.5rem, 6vw, 5rem);
-      margin-bottom: 1rem;
-    }
-
-    .section-header {
-      text-align: center;
-      font-size: 2rem;
-      margin-top: 4rem;
-      margin-bottom: 2rem;
-      color: var(--accent-3);
-    }
-
-    .section {
-      padding: 2rem 2rem;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2.5rem;
-    }
-
-    .card {
-      background: var(--card);
-      padding: 2rem;
-      border-radius: 26px;
-      box-shadow: var(--shadow);
-      transition: transform 0.35s ease;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .card:hover {
-      transform: translateY(-8px);
-    }
-
-    .card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 18px;
-      margin-bottom: 1.5rem;
-    }
-
-    .category-tag {
-      background: var(--accent-2);
-      color: #004d40;
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: bold;
-      text-transform: uppercase;
-      display: inline-block;
-      margin-bottom: 0.5rem;
-    }
-
-    .btn {
-      padding: 0.9rem 1.8rem;
-      background: linear-gradient(135deg, var(--accent), var(--accent-3));
-      border-radius: 999px;
-      border: none;
-      font-weight: 700;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      color: #1b1b1b;
-      box-shadow: var(--shadow);
-      width: 100%;
-    }
-
-    /* LANGUAGE & RTL */
-    html[dir="rtl"] {
-      direction: rtl;
-      text-align: right;
-    }
-    html[dir="rtl"] nav a {
-      margin-left: 0;
-      margin-right: 1.5rem;
-    }
-    .lang-btn {
-      background: #eee;
-      border: none;
-      padding: 0.4rem 0.8rem;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-      font-size: 0.9rem;
-      margin-right: 1.5rem;
-    }
-    html[dir="rtl"] .lang-btn {
-      margin-right: 0;
-      margin-left: 1.5rem;
-    }
-
-    /* CART */
-    #cart {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 360px;
-      height: 100%;
-      background: white;
-      padding: 1.5rem;
-      box-shadow: -10px 0 40px rgba(0,0,0,0.18);
-      transform: translateX(110%);
-      transition: transform 0.45s cubic-bezier(.4,0,.2,1);
-      z-index: 20;
-    }
+    body { margin: 0; font-family: system-ui, sans-serif; background: linear-gradient(180deg, var(--bg), #ffffff); color: var(--text); }
+    header { padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; background: rgba(255,248,242,0.85); backdrop-filter: blur(12px); z-index: 10; }
+    nav a { margin-left: 1.5rem; text-decoration: none; color: var(--text); font-weight: 600; font-size: 0.95rem; }
+    .hero { padding: 5rem 2rem 3rem; text-align: center; }
+    .hero h1 { font-size: clamp(2.5rem, 6vw, 5rem); margin-bottom: 1rem; }
+    .section-header { text-align: center; font-size: 2rem; margin-top: 4rem; margin-bottom: 2rem; color: var(--accent-3); }
+    .section { padding: 2rem 2rem; max-width: 1200px; margin: auto; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5rem; }
+    .card { background: var(--card); padding: 2rem; border-radius: 26px; box-shadow: var(--shadow); transition: transform 0.35s ease; text-align: center; display: flex; flex-direction: column; justify-content: space-between; }
+    .card:hover { transform: translateY(-8px); }
+    .card img { width: 100%; height: 200px; object-fit: cover; border-radius: 18px; margin-bottom: 1.5rem; }
+    .category-tag { background: var(--accent-2); color: #004d40; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; display: inline-block; margin-bottom: 0.5rem; }
+    .btn { padding: 0.9rem 1.8rem; background: linear-gradient(135deg, var(--accent), var(--accent-3)); border-radius: 999px; border: none; font-weight: 700; cursor: pointer; text-decoration: none; display: inline-block; color: #1b1b1b; box-shadow: var(--shadow); width: 100%; }
+    html[dir="rtl"] { direction: rtl; text-align: right; }
+    html[dir="rtl"] nav a { margin-left: 0; margin-right: 1.5rem; }
+    .lang-btn { background: #eee; border: none; padding: 0.4rem 0.8rem; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.9rem; margin-right: 1.5rem; }
+    html[dir="rtl"] .lang-btn { margin-right: 0; margin-left: 1.5rem; }
+    #cart { position: fixed; top: 0; right: 0; width: 360px; height: 100%; background: white; padding: 1.5rem; box-shadow: -10px 0 40px rgba(0,0,0,0.18); transform: translateX(110%); transition: transform 0.45s cubic-bezier(.4,0,.2,1); z-index: 20; }
     #cart.open { transform: translateX(0); }
-    .close-cart {
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      float: right;
-      cursor: pointer;
-    }
+    .close-cart { background: none; border: none; font-size: 1.5rem; float: right; cursor: pointer; }
     .cart-item { margin-bottom: 0.8rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; }
     footer { padding: 3rem; text-align: center; opacity: 0.7; font-size: 0.9rem; }
   </style>
 </head>
 <body>
-
 <header>
   <strong>BetzyDude</strong>
   <nav>
@@ -194,100 +49,39 @@
   <p data-i18n="hero_sub" style="font-size: 1.2rem; margin-bottom: 2rem;">Fonts, Templates, and Tools with personality.</p>
 </section>
 
-<!-- SECTION 1: FONTS -->
 <h2 class="section-header" id="fonts" data-i18n="sec_fonts">Fonts</h2>
 <section class="section">
   <div class="grid">
-    <div class="card">
-      <span class="category-tag">Display Font</span>
-      <img src="images/FUNKIZUK Cover-01.png" alt="Funkizuk" />
-      <h3>Funkizuk</h3>
-      <p data-i18n="funk_desc">Designed to bounce and grab attention.</p>
-      <a href="funkizuk.html" class="btn" data-i18n="btn_view">View Product</a>
-    </div>
-
-    <div class="card">
-      <span class="category-tag">Sans-Serif</span>
-      <img src="images/Ka'akooink Square Cover.png" alt="Kaakoink" />
-      <h3>Kaakoink</h3>
-      <p data-i18n="kaa_desc">A playful sans-serif with soft curves.</p>
-      <a href="kaakoink.html" class="btn" data-i18n="btn_view">View Product</a>
-    </div>
-
-    <div class="card">
-      <span class="category-tag">Serif</span>
-      <img src="images/Yad Hamelech - Cover-01.png" alt="Yad Hamelech" />
-      <h3>Yad Hamelech</h3>
-      <p data-i18n="yad_desc">An expressive serif inspired by tradition.</p>
-      <a href="yad.html" class="btn" data-i18n="btn_view">View Product</a>
-    </div>
+    <div class="card"><span class="category-tag">Display Font</span><img src="images/FUNKIZUK Cover-01.png" alt="Funkizuk" /><h3>Funkizuk</h3><p data-i18n="funk_desc">Designed to bounce and grab attention.</p><a href="funkizuk.html" class="btn" data-i18n="btn_view">View Product</a></div>
+    <div class="card"><span class="category-tag">Sans-Serif</span><img src="images/Ka'akooink Square Cover.png" alt="Kaakoink" /><h3>Kaakoink</h3><p data-i18n="kaa_desc">A playful sans-serif with soft curves.</p><a href="kaakoink.html" class="btn" data-i18n="btn_view">View Product</a></div>
+    <div class="card"><span class="category-tag">Serif</span><img src="images/Yad Hamelech - Cover-01.png" alt="Yad Hamelech" /><h3>Yad Hamelech</h3><p data-i18n="yad_desc">An expressive serif inspired by tradition.</p><a href="yad.html" class="btn" data-i18n="btn_view">View Product</a></div>
   </div>
 </section>
 
-<!-- SECTION 2: GRAPHICS -->
 <h2 class="section-header" id="graphics" data-i18n="sec_graphics">Graphic Assets</h2>
 <section class="section">
   <div class="grid">
-    <div class="card">
-      <span class="category-tag">Assets</span>
-      <!-- Placeholder image instruction -->
-      <div style="width:100%; height:200px; background:#eee; border-radius:18px; margin-bottom:1.5rem; display:flex; align-items:center; justify-content:center;">Image Here</div>
-      <h3>Bitmap Bundle</h3>
-      <p>High-res bitmaps for rough texture.</p>
-      <a href="bitmap.html" class="btn" data-i18n="btn_view">View Product</a>
-    </div>
-    <div class="card">
-      <span class="category-tag">Assets</span>
-      <div style="width:100%; height:200px; background:#eee; border-radius:18px; margin-bottom:1.5rem; display:flex; align-items:center; justify-content:center;">Image Here</div>
-      <h3>Psychadelic Pack</h3>
-      <p>Trippy shapes and colors for the modern mind.</p>
-      <a href="psychadelic.html" class="btn" data-i18n="btn_view">View Product</a>
-    </div>
-    <div class="card">
-      <span class="category-tag">Assets</span>
-      <div style="width:100%; height:200px; background:#eee; border-radius:18px; margin-bottom:1.5rem; display:flex; align-items:center; justify-content:center;">Image Here</div>
-      <h3>Wireframe Kit</h3>
-      <p>Clean lines for technical layouts.</p>
-      <a href="wireframe.html" class="btn" data-i18n="btn_view">View Product</a>
-    </div>
+    <div class="card"><span class="category-tag">Assets</span><img src="images/bitmap-cover.png" alt="Bitmap" /><h3>Bitmap Bundle</h3><p>High-res bitmaps for rough texture.</p><a href="bitmap.html" class="btn" data-i18n="btn_view">View Product</a></div>
+    <div class="card"><span class="category-tag">Assets</span><img src="images/psychadelic-cover.png" alt="Psychadelic" /><h3>Psychadelic Pack</h3><p>Trippy shapes and colors for the modern mind.</p><a href="psychadelic.html" class="btn" data-i18n="btn_view">View Product</a></div>
+    <div class="card"><span class="category-tag">Assets</span><img src="images/wireframe-cover.png" alt="Wireframe" /><h3>Wireframe Kit</h3><p>Clean lines for technical layouts.</p><a href="wireframe.html" class="btn" data-i18n="btn_view">View Product</a></div>
   </div>
 </section>
 
-<!-- SECTION 3: TEMPLATES -->
 <h2 class="section-header" id="templates" data-i18n="sec_templates">Canva Templates</h2>
 <section class="section">
   <div class="grid">
-    <div class="card">
-      <span class="category-tag">Canva</span>
-      <div style="width:100%; height:200px; background:#eee; border-radius:18px; margin-bottom:1.5rem; display:flex; align-items:center; justify-content:center;">Image Here</div>
-      <h3>Social Starter</h3>
-      <p>The essential pack for starting out.</p>
-      <a href="social-starter.html" class="btn" data-i18n="btn_view">View Product</a>
-    </div>
-    <div class="card">
-      <span class="category-tag">Canva</span>
-      <div style="width:100%; height:200px; background:#eee; border-radius:18px; margin-bottom:1.5rem; display:flex; align-items:center; justify-content:center;">Image Here</div>
-      <h3>Social Genius</h3>
-      <p>Advanced layouts for influencers.</p>
-      <a href="social-genius.html" class="btn" data-i18n="btn_view">View Product</a>
-    </div>
-    <div class="card">
-      <span class="category-tag">Canva</span>
-      <div style="width:100%; height:200px; background:#eee; border-radius:18px; margin-bottom:1.5rem; display:flex; align-items:center; justify-content:center;">Image Here</div>
-      <h3>Event Master</h3>
-      <p>Invites and flyers for every party.</p>
-      <a href="event-master.html" class="btn" data-i18n="btn_view">View Product</a>
-    </div>
+    <div class="card"><span class="category-tag">Canva</span><img src="images/starter-cover.png" alt="Social Starter" /><h3>Social Starter</h3><p>The essential pack for starting out.</p><a href="social-starter.html" class="btn" data-i18n="btn_view">View Product</a></div>
+    <div class="card"><span class="category-tag">Canva</span><img src="images/genius-cover.png" alt="Social Genius" /><h3>Social Genius</h3><p>Advanced layouts for influencers.</p><a href="social-genius.html" class="btn" data-i18n="btn_view">View Product</a></div>
+    <div class="card"><span class="category-tag">Canva</span><img src="images/event-cover.png" alt="Event Master" /><h3>Event Master</h3><p>Invites and flyers for every party.</p><a href="event-master.html" class="btn" data-i18n="btn_view">View Product</a></div>
   </div>
 </section>
 
-<!-- SECTION 4: BOOKS -->
 <h2 class="section-header" id="books" data-i18n="sec_books">Digital Books</h2>
 <section class="section">
   <div class="grid">
     <div class="card" style="grid-column: 1 / -1; max-width: 600px; margin: 0 auto; text-align: left;">
       <div style="display:flex; gap: 2rem; align-items: center; flex-wrap: wrap;">
-        <img src="images/book-placeholder.png" alt="Book" style="width:200px; margin-bottom:0;" />
+        <img src="images/guide-cover.png" alt="Book" style="width:200px; margin-bottom:0;" />
         <div>
           <h3>The Digital Guide</h3>
           <p>Everything you need to know about modern design.</p>
@@ -298,83 +92,34 @@
   </div>
 </section>
 
-<!-- CART SIDEBAR -->
-<div id="cart">
-  <button class="close-cart" onclick="toggleCart()">×</button>
-  <h2 data-i18n="cart_title">Your Cart</h2>
-  <div id="cartItems"></div>
-  <p><strong data-i18n="cart_total">Total:</strong> $<span id="total">0</span></p>
-  <button class="btn" onclick="stripeCheckout()" data-i18n="cart_checkout">Checkout</button>
-</div>
-
-<footer data-i18n="footer">
-  © 2026 BetzyDude — indie tools made with joy
-</footer>
+<div id="cart"><button class="close-cart" onclick="toggleCart()">×</button><h2 data-i18n="cart_title">Your Cart</h2><div id="cartItems"></div><p><strong data-i18n="cart_total">Total:</strong> $<span id="total">0</span></p><button class="btn" onclick="stripeCheckout()" data-i18n="cart_checkout">Checkout</button></div>
+<footer data-i18n="footer">© 2026 BetzyDude — indie tools made with joy</footer>
 
 <script>
   const translations = {
-    en: {
-      nav_fonts: "Fonts", nav_graphics: "Graphics", nav_templates: "Templates", nav_books: "Books", nav_cart: "Cart",
-      hero_title: "Creative Assets for the Bold.", hero_sub: "Fonts, Templates, and Tools with personality.",
-      sec_fonts: "Fonts", sec_graphics: "Graphic Assets", sec_templates: "Canva Templates", sec_books: "Digital Books",
-      btn_view: "View Product",
-      funk_desc: "Designed to bounce and grab attention.", kaa_desc: "A playful sans-serif with soft curves.", yad_desc: "An expressive serif inspired by tradition.",
-      cart_title: "Your Cart", cart_total: "Total:", cart_checkout: "Checkout", footer: "© 2026 BetzyDude — indie tools made with joy"
-    },
-    he: {
-      nav_fonts: "פונטים", nav_graphics: "גרפיקה", nav_templates: "תבניות", nav_books: "ספרים", nav_cart: "עגלה",
-      hero_title: "נכסים יצירתיים לאמיצים.", hero_sub: "פונטים, תבניות וכלים עם אישיות.",
-      sec_fonts: "פונטים", sec_graphics: "חבילות גרפיקה", sec_templates: "תבניות קנבה", sec_books: "ספרים דיגיטליים",
-      btn_view: "צפה במוצר",
-      funk_desc: "עוצב לקפוץ ולמשוך תשומת לב.", kaa_desc: "סנס-סריפ משחקי עם עקומות רכות.", yad_desc: "סריף אקספרסיבי השרוי במסורת וחום.",
-      cart_title: "העגלה שלך", cart_total: "סה״כ:", cart_checkout: "לתשלום", footer: "© 2026 בצי-דוד — כלים עצמאיים עשויים באהבה"
-    }
+    en: { nav_fonts: "Fonts", nav_graphics: "Graphics", nav_templates: "Templates", nav_books: "Books", nav_cart: "Cart", hero_title: "Creative Assets for the Bold.", hero_sub: "Fonts, Templates, and Tools with personality.", sec_fonts: "Fonts", sec_graphics: "Graphic Assets", sec_templates: "Canva Templates", sec_books: "Digital Books", btn_view: "View Product", funk_desc: "Designed to bounce and grab attention.", kaa_desc: "A playful sans-serif with soft curves.", yad_desc: "An expressive serif inspired by tradition.", cart_title: "Your Cart", cart_total: "Total:", cart_checkout: "Checkout", footer: "© 2026 BetzyDude — indie tools made with joy" },
+    he: { nav_fonts: "פונטים", nav_graphics: "גרפיקה", nav_templates: "תבניות", nav_books: "ספרים", nav_cart: "עגלה", hero_title: "נכסים יצירתיים לאמיצים.", hero_sub: "פונטים, תבניות וכלים עם אישיות.", sec_fonts: "פונטים", sec_graphics: "חבילות גרפיקה", sec_templates: "תבניות קנבה", sec_books: "ספרים דיגיטליים", btn_view: "צפה במוצר", funk_desc: "עוצב לקפוץ ולמשוך תשומת לב.", kaa_desc: "סנס-סריפ משחקי עם עקומות רכות.", yad_desc: "סריף אקספרסיבי השרוי במסורת וחום.", cart_title: "העגלה שלך", cart_total: "סה״כ:", cart_checkout: "לתשלום", footer: "© 2026 בצי-דוד — כלים עצמאיים עשויים באהבה" }
   };
-
   let cart = JSON.parse(localStorage.getItem('betzyCart')) || [];
   let currentLang = localStorage.getItem('siteLang') || 'en';
-
   function setLanguage(lang) {
-    currentLang = lang;
-    localStorage.setItem('siteLang', lang);
-    document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr';
-    document.documentElement.lang = lang;
+    currentLang = lang; localStorage.setItem('siteLang', lang);
+    document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr'; document.documentElement.lang = lang;
     document.querySelectorAll('[data-i18n]').forEach(elem => {
-      const key = elem.getAttribute('data-i18n');
-      if(translations[lang][key]) elem.innerHTML = translations[lang][key];
-    });
-    renderCart();
+      const key = elem.getAttribute('data-i18n'); if(translations[lang][key]) elem.innerHTML = translations[lang][key];
+    }); renderCart();
   }
-
   function toggleLanguage() { setLanguage(currentLang === 'en' ? 'he' : 'en'); }
-
   function updateCartCount() { document.getElementById('cartCount').textContent = cart.length; }
-
   function renderCart() {
-    const items = document.getElementById('cartItems');
-    const total = document.getElementById('total');
-    items.innerHTML = ''; let sum = 0;
-    if (cart.length === 0) {
-      items.innerHTML = `<p>${translations[currentLang].cart_title} is empty.</p>`;
-    } else {
-      cart.forEach((item, index) => {
-        sum += item.price;
-        items.innerHTML += `<div class='cart-item'><div>${item.name} — $${item.price}</div><small style="cursor:pointer; color:red;" onclick="removeItem(${index})">Remove</small></div>`;
-      });
-    }
-    total.textContent = sum;
-    updateCartCount();
-    localStorage.setItem('betzyCart', JSON.stringify(cart));
+    const items = document.getElementById('cartItems'); const total = document.getElementById('total'); items.innerHTML = ''; let sum = 0;
+    if (cart.length === 0) { items.innerHTML = `<p>${translations[currentLang].cart_title} is empty.</p>`; }
+    else { cart.forEach((item, index) => { sum += item.price; items.innerHTML += `<div class='cart-item'><div>${item.name} — $${item.price}</div><small style="cursor:pointer; color:red;" onclick="removeItem(${index})">Remove</small></div>`; }); }
+    total.textContent = sum; updateCartCount(); localStorage.setItem('betzyCart', JSON.stringify(cart));
   }
-
-  function toggleCart(force = false) {
-    const c = document.getElementById('cart');
-    force ? c.classList.add('open') : c.classList.toggle('open');
-    renderCart();
-  }
+  function toggleCart(force = false) { const c = document.getElementById('cart'); force ? c.classList.add('open') : c.classList.toggle('open'); renderCart(); }
   function removeItem(index) { cart.splice(index, 1); renderCart(); }
   function stripeCheckout() { if(cart.length === 0) return alert("Cart is empty!"); alert("Proceeding to checkout..."); }
-
   setLanguage(currentLang); updateCartCount();
 </script>
 </body>
