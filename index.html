@@ -8,21 +8,25 @@
 
   <style>
     :root {
-      --bg: #fbfaf7;
-      --text: #1a1a1a;
-      --accent: #f4a6a6;
-      --accent-2: #b7d7c9;
-      --accent-3: #c7c3f4;
+      --bg: #fff8f2;
+      --text: #1b1b1b;
+      --accent: #ff9aa2;   /* warm coral */
+      --accent-2: #b8e1d9; /* mint */
+      --accent-3: #cdb4db; /* lavender */
+      --accent-4: #fde2ae; /* butter */
       --card: #ffffff;
-      --shadow: 0 12px 30px rgba(0,0,0,0.08);
+      --shadow: 0 16px 40px rgba(0,0,0,0.08);
     }
+
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: system-ui, sans-serif;
-      background: var(--bg);
+      background: linear-gradient(180deg, var(--bg), #ffffff);
       color: var(--text);
     }
+
     header {
       padding: 1.5rem 2rem;
       display: flex;
@@ -30,72 +34,102 @@
       align-items: center;
       position: sticky;
       top: 0;
-      background: rgba(251,250,247,0.85);
-      backdrop-filter: blur(10px);
+      background: rgba(255,248,242,0.85);
+      backdrop-filter: blur(12px);
       z-index: 10;
     }
+
     nav a {
       margin-left: 1.5rem;
       text-decoration: none;
       color: var(--text);
-      font-weight: 500;
+      font-weight: 600;
     }
+
     .hero {
-      padding: 5rem 2rem 4rem;
+      padding: 5rem 2rem 3rem;
       text-align: center;
     }
+
     .hero h1 {
       font-size: clamp(2.5rem, 6vw, 5rem);
       margin-bottom: 1rem;
     }
+
     .section {
       padding: 4.5rem 2rem;
-      max-width: 1200px;
+      max-width: 1100px;
       margin: auto;
     }
+
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
     }
+
     .card {
       background: var(--card);
-      padding: 2rem;
-      border-radius: 22px;
+      padding: 2.5rem;
+      border-radius: 26px;
       box-shadow: var(--shadow);
-      transition: transform 0.25s ease;
+      transition: transform 0.35s ease;
     }
-    .card:hover { transform: translateY(-6px) rotate(0.3deg); }
+
+    .card:hover {
+      transform: translateY(-8px) rotate(0.4deg);
+    }
+
     .btn {
-      margin-top: 1rem;
-      padding: 0.8rem 1.6rem;
-      background: var(--accent);
+      margin-top: 1.2rem;
+      padding: 0.9rem 1.8rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent-3));
       border-radius: 999px;
       border: none;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
+      box-shadow: var(--shadow);
     }
+
     select {
       width: 100%;
       padding: 0.6rem;
-      border-radius: 10px;
+      border-radius: 12px;
       margin-top: 0.5rem;
     }
+
+    /* CART */
     #cart {
       position: fixed;
       top: 0;
       right: 0;
-      width: 340px;
+      width: 360px;
       height: 100%;
       background: white;
       padding: 1.5rem;
-      box-shadow: -8px 0 30px rgba(0,0,0,0.15);
-      transform: translateX(100%);
-      transition: transform 0.35s ease;
+      box-shadow: -10px 0 40px rgba(0,0,0,0.18);
+      transform: translateX(110%);
+      transition: transform 0.45s cubic-bezier(.4,0,.2,1);
       z-index: 20;
     }
+
     #cart.open { transform: translateX(0); }
-    .cart-item { margin-bottom: 0.6rem; }
+
+    .close-cart {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      float: right;
+      cursor: pointer;
+    }
+
+    .cart-item { margin-bottom: 0.8rem; }
+
+    footer {
+      padding: 3rem;
+      text-align: center;
+      opacity: 0.7;
+    }
   </style>
 </head>
 <body>
@@ -103,84 +137,72 @@
 <header>
   <strong>BetzyDude</strong>
   <nav>
-    <a href="#fonts">Fonts</a>
-    <a href="#assets">Assets</a>
-    <a href="#templates">Canva</a>
+    <a href="#funkizuk">Funkizuk</a>
+    <a href="#kaakoink">Kaakoink</a>
+    <a href="#yad">Yad Hamelech</a>
     <a href="#" onclick="toggleCart()">Cart</a>
   </nav>
 </header>
 
 <section class="hero">
-  <h1>Playful tools for creative people</h1>
+  <h1>Fonts with personality. Tools with heart.</h1>
 </section>
 
-<section class="section" id="fonts">
-  <h2>Fonts</h2>
-  <div class="grid">
-
-    <div class="card">
-      <h3>Funkizuk</h3>
-      <p>Funky display font with bold personality.</p>
-      <label>License</label>
-      <select onchange="updatePrice(this, 45, 75)">
-        <option value="personal">Personal — $45</option>
-        <option value="commercial">Commercial — $75</option>
-      </select>
-      <strong class="price">$45</strong>
-      <button class="btn" onclick="addFontToCart('Funkizuk', this)">Add to Cart</button>
-    </div>
-
-    <div class="card">
-      <h3>Kaakoink</h3>
-      <p>Playful sans-serif with friendly curves.</p>
-      <label>License</label>
-      <select onchange="updatePrice(this, 39, 65)">
-        <option value="personal">Personal — $39</option>
-        <option value="commercial">Commercial — $65</option>
-      </select>
-      <strong class="price">$39</strong>
-      <button class="btn" onclick="addFontToCart('Kaakoink', this)">Add to Cart</button>
-    </div>
-
-    <div class="card">
-      <h3>Yad Hamelech</h3>
-      <p>Expressive serif inspired by tradition.</p>
-      <label>License</label>
-      <select onchange="updatePrice(this, 49, 85)">
-        <option value="personal">Personal — $49</option>
-        <option value="commercial">Commercial — $85</option>
-      </select>
-      <strong class="price">$49</strong>
-      <button class="btn" onclick="addFontToCart('Yad Hamelech', this)">Add to Cart</button>
-    </div>
-
+<!-- PRODUCT PAGES -->
+<section class="section" id="funkizuk">
+  <h2>Funkizuk</h2>
+  <div class="card">
+    <p><strong>Funkizuk</strong> is a funky display font designed to bounce, wobble, and grab attention. Perfect for posters, branding, and playful identities.</p>
+    <label>License</label>
+    <select onchange="updatePrice(this,45,75)">
+      <option value="personal">Personal — $45</option>
+      <option value="commercial">Commercial — $75</option>
+    </select>
+    <strong class="price">$45</strong>
+    <button class="btn" onclick="addFontToCart('Funkizuk', this)">Add to Cart</button>
   </div>
 </section>
 
-<section class="section" id="assets">
-  <h2>Graphic Asset Bundles</h2>
-  <div class="grid">
-    <div class="card"><h3>Wobbly Shapes Pack</h3><p>$18</p><button class="btn" onclick="addToCart('Wobbly Shapes Pack',18)">Add</button></div>
-    <div class="card"><h3>Pastel Icons Kit</h3><p>$22</p><button class="btn" onclick="addToCart('Pastel Icons Kit',22)">Add</button></div>
-    <div class="card"><h3>Texture & Grain Bundle</h3><p>$20</p><button class="btn" onclick="addToCart('Texture & Grain Bundle',20)">Add</button></div>
+<section class="section" id="kaakoink">
+  <h2>Kaakoink</h2>
+  <div class="card">
+    <p><strong>Kaakoink</strong> is a playful sans-serif with soft curves and unexpected rhythm. Friendly, modern, and versatile.</p>
+    <label>License</label>
+    <select onchange="updatePrice(this,39,65)">
+      <option value="personal">Personal — $39</option>
+      <option value="commercial">Commercial — $65</option>
+    </select>
+    <strong class="price">$39</strong>
+    <button class="btn" onclick="addFontToCart('Kaakoink', this)">Add to Cart</button>
   </div>
 </section>
 
-<section class="section" id="templates">
-  <h2>Canva Templates</h2>
-  <div class="grid">
-    <div class="card"><h3>Social Starter Pack</h3><p>$16</p><button class="btn" onclick="addToCart('Social Starter Pack',16)">Add</button></div>
-    <div class="card"><h3>Brand Kit Templates</h3><p>$24</p><button class="btn" onclick="addToCart('Brand Kit Templates',24)">Add</button></div>
-    <div class="card"><h3>Portfolio Pages</h3><p>$19</p><button class="btn" onclick="addToCart('Portfolio Pages',19)">Add</button></div>
+<section class="section" id="yad">
+  <h2>Yad Hamelech</h2>
+  <div class="card">
+    <p><strong>Yad Hamelech</strong> is an expressive serif inspired by tradition, warmth, and storytelling. Designed for editorial and branding.</p>
+    <label>License</label>
+    <select onchange="updatePrice(this,49,85)">
+      <option value="personal">Personal — $49</option>
+      <option value="commercial">Commercial — $85</option>
+    </select>
+    <strong class="price">$49</strong>
+    <button class="btn" onclick="addFontToCart('Yad Hamelech', this)">Add to Cart</button>
   </div>
 </section>
 
+<!-- CART -->
 <div id="cart">
+  <button class="close-cart" onclick="toggleCart()">×</button>
   <h2>Your Cart</h2>
   <div id="cartItems"></div>
   <p><strong>Total: $<span id="total">0</span></strong></p>
   <button class="btn" onclick="stripeCheckout()">Checkout</button>
 </div>
+
+<footer>
+  © 2026 BetzyDude — indie tools made with joy
+</footer>
 
 <script>
   let cart = [];
@@ -194,12 +216,7 @@
     const card = btn.parentElement;
     const license = card.querySelector('select').value;
     const price = parseInt(card.querySelector('.price').textContent.replace('$',''));
-    cart.push({ name: name + ' (' + license + ')', price });
-    renderCart(); toggleCart(true);
-  }
-
-  function addToCart(name, price) {
-    cart.push({ name, price });
+    cart.push({ name: `${name} (${license})`, price });
     renderCart(); toggleCart(true);
   }
 
@@ -215,7 +232,7 @@
     total.textContent = sum;
   }
 
-  function toggleCart(force=false) {
+  function toggleCart(force = false) {
     const c = document.getElementById('cart');
     force ? c.classList.add('open') : c.classList.toggle('open');
   }
